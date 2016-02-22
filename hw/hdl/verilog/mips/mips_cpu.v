@@ -50,7 +50,8 @@ module mips_cpu (
         .clk            (clk),
         .rst            (rst),
         .en             (en_if),
-        .jump_target    (jump_target_id | jump_branch_id),
+        .jump_target    (jump_target_id),
+        .jump_branch    (jump_branch_id)
         .pc_id          (pc_id),
         .instr_id       (instr_id[25:0]),
         .pc             (pc_if)
