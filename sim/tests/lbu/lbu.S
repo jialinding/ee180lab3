@@ -30,6 +30,8 @@ boot:
     nop
     nop
     sw      $t1, 0($t0)
+    nop
+    nop
     lbu     $s2, 0($t0)         # 0xde
     lbu     $s3, 1($t0)         # 0x0f
     lbu     $s4, 2($t0)         # 0xbe
