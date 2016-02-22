@@ -23,6 +23,8 @@ boot:
     ori     $t1, $0, 0xffff
     nop
     nop
+    nop
+    nop
     beq     $t0, $t1, $target
     ori     $v0, $0, 0          # The test result starts as a failure
 
