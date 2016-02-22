@@ -24,6 +24,7 @@ boot:
     nop
     nop
     nop
+    nop
     jr      $t0
     ori     $v0, $0, 0          # The test result starts as a failure
 

@@ -195,7 +195,7 @@ module decode (
 
     // determine when to write back to a register (any operation that isn't a store,
     // non-linking branch, or non-linking jump)
-    assign reg_we = ~|{mem_we, isJ, isBGEZNL, isBGTZ, isBLEZ, isBLTZNL, isBNE, isBEQ};
+    assign reg_we = ~|{mem_we, isJ, isJR, isBGEZNL, isBGTZ, isBLEZ, isBLTZNL, isBNE, isBEQ};
 
     // determine whether a register write is conditional
     assign movn = &{op == `SPECIAL, funct == `MOVN};
