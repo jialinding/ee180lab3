@@ -19,6 +19,8 @@ boot:
     lui     $s0, 0x8002         # Load the base address of the status/test registers
     ori     $s1, $0, 1          # Prepare the 'done' status
     ori     $t0, $0, 0xdeaf     # A = 0xdeaf
+    nop
+    nop
     andi    $t1, $t0, 0x3141    # B = and(A, 0x3141) = 0x1001
     nop
     nop
