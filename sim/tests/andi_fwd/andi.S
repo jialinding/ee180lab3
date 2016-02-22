@@ -20,8 +20,6 @@ boot:
     ori     $s1, $0, 1          # Prepare the 'done' status
     ori     $t0, $0, 0xdeaf     # A = 0xdeaf
     andi    $t1, $t0, 0x3141    # B = and(A, 0x3141) = 0x1001
-    nop
-    nop
     andi    $t2, $t1, 0xefff    # C = and(B, 0xefee) = 1
     sw      $t2, 4($s0)         # Set the test result
     sw      $s1, 0($s0)         # Set 'done'
