@@ -222,6 +222,6 @@ module decode (
                            (isBLTZNL | isBLTZAL) & ($signed(rs_data) < $signed(1'b0))};
 
     assign jump_target = isJ;
-    assign jump_reg = 1'b0;
+    assign jump_reg = isJR;
 
 endmodule
