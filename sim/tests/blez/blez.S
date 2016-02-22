@@ -21,6 +21,7 @@ boot:
     ori     $s1, $0, 1          # Prepare the 'done' status
     lui     $t0, 0xffff         # Load -1
     nop
+    nop
     ori     $t0, $t0, 0xffff
     nop
     nop
