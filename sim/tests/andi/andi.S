@@ -23,6 +23,8 @@ boot:
     nop
     nop
     andi    $t2, $t1, 0xefff    # C = and(B, 0xefee) = 1
+    nop
+    nop
     sw      $t2, 4($s0)         # Set the test result
     sw      $s1, 0($s0)         # Set 'done'
 
