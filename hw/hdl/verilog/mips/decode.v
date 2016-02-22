@@ -77,6 +77,7 @@ module decode (
 //******************************************************************************
 
     wire isJ    = (op == `J);
+    wire isJR   = (op == `JR);
 
 //******************************************************************************
 // shift instruction decode
@@ -123,6 +124,7 @@ module decode (
             {`SPECIAL, `SRL}:   alu_opcode = `ALU_SRL;
             {`SPECIAL, `SLLV}:  alu_opcode = `ALU_SLL;
             {`SPECIAL, `SRLV}:  alu_opcode = `ALU_SRL;
+            {`SPECIAL, `JR}:    alu_opcode = `ALU_PASSX;
             // compare rs data to 0, only care about 1 operand
             {`BGTZ, `DC6}:      alu_opcode = `ALU_PASSX;
             {`BLEZ, `DC6}:      alu_opcode = `ALU_PASSX;
@@ -216,7 +218,8 @@ module decode (
     assign jump_branch = |{isBEQ & isEqual,
                            isBNE & ~isEqual,
                            (isBGEZNL | isBGEZAL) & (rs_data >= 1'b0),
-                           isBLEZ & (rs_data <= 1'b0)};
+                           isBLEZ & (rs_data <= 1'b0),
+                           (isBLTZNL | isBLTZAL) & (rs_data < 1'b0)};
 
     assign jump_target = isJ;
     assign jump_reg = 1'b0;
