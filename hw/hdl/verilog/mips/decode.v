@@ -150,9 +150,10 @@ module decode (
     wire use_imm = &{op != `SPECIAL, op != `SPECIAL2, op != `BNE, op != `BEQ}; // where to get 2nd ALU operand from: 0 for RtData, 1 for Immediate
 
     wire [31:0] imm_sign_extend = {{16{immediate[15]}}, immediate};
+    wire [31:0] imm_no_sign_extend = {16'b0, immediate};
     wire [31:0] imm_upper = {immediate, 16'b0};
 
-    wire [31:0] imm = (op == `LUI) ? imm_upper : imm_sign_extend;
+    wire [31:0] imm = (op == `LUI) ? imm_upper : ((op == `SLTIU) ? imm_no_sign_extend : imm_sign_extend);
 
 //******************************************************************************
 // forwarding and stalling logic
