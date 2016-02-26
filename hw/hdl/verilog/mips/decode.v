@@ -87,10 +87,11 @@ module decode (
     wire isSRA = (op == `SPECIAL) & (funct == `SRA);
     wire isSRL = (op == `SPECIAL) & (funct == `SRL);
     wire isSLLV = (op == `SPECIAL) & (funct == `SLLV);
+    wire isSRAV = (op == `SPECIAL) & (funct == `SRAV);
     wire isSRLV = (op == `SPECIAL) & (funct == `SRLV);
 
     wire isShiftImm = isSLL | isSRL | isSRA;
-    wire isShift = isShiftImm | isSLLV | isSRLV;
+    wire isShift = isShiftImm | isSLLV | isSRLV | isSRAV;
 
 //******************************************************************************
 // ALU instructions decode / control signal for ALU datapath
@@ -127,6 +128,7 @@ module decode (
             {`SPECIAL, `SRL}:   alu_opcode = `ALU_SRL;
             {`SPECIAL, `SLLV}:  alu_opcode = `ALU_SLL;
             {`SPECIAL, `SRLV}:  alu_opcode = `ALU_SRL;
+            {`SPECIAL, `SRAV}:  alu_opcode = `ALU_SRA;
             {`SPECIAL, `JR}:    alu_opcode = `ALU_PASSX;
             // compare rs data to 0, only care about 1 operand
             {`BGTZ, `DC6}:      alu_opcode = `ALU_PASSX;
