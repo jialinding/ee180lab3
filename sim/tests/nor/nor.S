@@ -23,6 +23,9 @@ boot:
     nor     $s1, $0, $t0         # Prepare the 'done' status
     nop
     nop
+    slti    $s1, $s1, 0
+    nop
+    nop
     sw      $s1, 4($s0)         # Set the test result
     sw      $s1, 0($s0)         # Set 'done'
 
