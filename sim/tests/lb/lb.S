@@ -36,10 +36,20 @@ boot:
     nop
     nop
     sw      $t1, 0($t0)
+    nop
+    nop
     lb      $s2, 0($t0)         # 0xffffffde
+    nop
+    nop
     lb      $s3, 1($t0)         # 0x0000000f
+    nop
+    nop
     lb      $s4, 2($t0)         # 0xffffffbe
+    nop
+    nop
     lb      $s5, 3($t0)         # 0xffffffef
+    nop
+    nop
     lui     $t2, 0xffff
     nop
     nop
