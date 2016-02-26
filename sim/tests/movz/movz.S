@@ -24,6 +24,7 @@ boot:
     ori     $t1, $0, 0
     movz    $t1, $t0, $s1       # $t1 remains 0
     movz    $t2, $t0, $0        # $t2 gets 0xdeafbeef
+    nop
     subu    $t3, $t2, $t0
     nop
     sltiu   $v0, $t3, 1
