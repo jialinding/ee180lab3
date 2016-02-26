@@ -118,6 +118,7 @@ module decode (
             {`SPECIAL, `OR}:    alu_opcode = `ALU_OR;
             {`SPECIAL, `MOVN}:  alu_opcode = `ALU_PASSX;
             {`SPECIAL, `MOVZ}:  alu_opcode = `ALU_PASSX;
+            {`SPECIAL, `MUL}:   alu_opcode = `ALU_MUL;
             {`SPECIAL, `SLT}:   alu_opcode = `ALU_SLT;
             {`SPECIAL, `SLTU}:  alu_opcode = `ALU_SLTU;
             {`SPECIAL, `SLL}:   alu_opcode = `ALU_SLL;
@@ -153,7 +154,7 @@ module decode (
     wire [31:0] imm_no_sign_extend = {16'b0, immediate};
     wire [31:0] imm_upper = {immediate, 16'b0};
 
-    wire [31:0] imm = (op == `LUI) ? imm_upper : ((op == `SLTIU | op == `ORI) ? imm_no_sign_extend : imm_sign_extend);
+    wire [31:0] imm = (op == `LUI) ? imm_upper : ((op == `SLTIUxr | op == `ORI) ? imm_no_sign_extend : imm_sign_extend);
 
 //******************************************************************************
 // forwarding and stalling logic
