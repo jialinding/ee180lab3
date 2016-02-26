@@ -120,6 +120,7 @@ module decode (
             {`SPECIAL, `SUBU}:  alu_opcode = `ALU_SUBU;
             {`SPECIAL, `AND}:   alu_opcode = `ALU_AND;
             {`SPECIAL, `OR}:    alu_opcode = `ALU_OR;
+            {`SPECIAL, `NOR}:   alu_opcode = `ALU_NOR;
             {`SPECIAL, `MOVN}:  alu_opcode = `ALU_PASSX;
             {`SPECIAL, `MOVZ}:  alu_opcode = `ALU_PASSX;
             {`SPECIAL2, `MUL}:  alu_opcode = `ALU_MUL;
