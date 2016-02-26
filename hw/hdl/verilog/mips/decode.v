@@ -226,7 +226,7 @@ module decode (
                            isBNE & ~isEqual,
                            (isBGEZNL | isBGEZAL) & (rs_data >= 1'b0),
                            isBLEZ & ($signed(rs_data) <= $signed(1'b0)),
-                           isBGTZ & ($signed(rs_data) > $signed(1'b0))
+                           isBGTZ & ($signed(rs_data) > $signed(1'b0)),
                            (isBLTZNL | isBLTZAL) & ($signed(rs_data) < $signed(1'b0))};
 
     assign jump_target = isJ;
