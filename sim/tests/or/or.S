@@ -20,7 +20,7 @@ boot:
     addiu   $t0, $0, 1
     nop
     nop
-    ori     $s1, $0, $t0        # Prepare the 'done' status
+    or      $s1, $0, $t0        # Prepare the 'done' status
     nop
     nop
     sw      $s1, 4($s0)         # Set the test result
