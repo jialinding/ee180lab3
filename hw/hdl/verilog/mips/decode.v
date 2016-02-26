@@ -78,6 +78,8 @@ module decode (
 
     wire isJ    = (op == `J);
     wire isJR   = (op == `SPECIAL) & (funct == `JR);
+    wire isJAL  = (op == `JAL);
+    wire isJALR = (op == `SPECIAL) & (funct == `JALR);
 
 //******************************************************************************
 // shift instruction decode
@@ -197,8 +199,8 @@ module decode (
     // for immediate operations, use Imm
     // otherwise use rt
 
-    assign alu_op_y = (use_imm) ? imm : rt_data;
-    assign reg_write_addr = (use_imm) ? rt_addr : rd_addr;
+    assign alu_op_y = (isJAL | isJALR) ? pc + 4'd8 : ((use_imm) ? imm : rt_data);
+    assign reg_write_addr = (isJAL | isJALR) ? 5'd31 : ((use_imm) ? rt_addr : rd_addr);
 
     // determine when to write back to a register (any operation that isn't a store,
     // non-linking branch, or non-linking jump)
@@ -229,7 +231,7 @@ module decode (
                            isBGTZ & ($signed(rs_data) > $signed(1'b0)),
                            (isBLTZNL | isBLTZAL) & ($signed(rs_data) < $signed(1'b0))};
 
-    assign jump_target = isJ;
-    assign jump_reg = isJR;
+    assign jump_target = isJ | isJAL;
+    assign jump_reg = isJR | isJALR;
 
 endmodule
