@@ -114,7 +114,7 @@ module decode (
             {`SB, `DC6}:        alu_opcode = `ALU_ADD;
             {`BEQ, `DC6}:       alu_opcode = `ALU_SUBU;
             {`BNE, `DC6}:       alu_opcode = `ALU_SUBU;
-						{`XORI, `DC6}:      alu_opcode = `ALU_XOR;
+			{`XORI, `DC6}:      alu_opcode = `ALU_XOR;
             {`SPECIAL, `ADD}:   alu_opcode = `ALU_ADD;
             {`SPECIAL, `ADDU}:  alu_opcode = `ALU_ADDU;
             {`SPECIAL, `SUB}:   alu_opcode = `ALU_SUB;
@@ -171,10 +171,11 @@ module decode (
 
     wire forward_rs_mem = &{rs_addr == reg_write_addr_mem, rs_addr != `ZERO, reg_we_mem};
 
-    assign rs_data = forward_rs_mem ? reg_write_data_mem : rs_data_in;
+    assign rs_data = forward_rs_mem ? reg_write_data_mem : (forward_rs_ex ? alu_result_ex : rs_data_in);
     assign rt_data = rt_data_in;
 
     wire rs_mem_dependency = &{rs_addr == reg_write_addr_ex, mem_read_ex, rs_addr != `ZERO};
+    wire forward_rs_ex = &{rs_addr == reg_write_addr_ex, ~mem_read_ex, rs_addr != `ZERO, reg_we_ex};
 
     wire isLUI = op == `LUI;
     wire read_from_rs = ~|{isLUI, jump_target, isShiftImm};
