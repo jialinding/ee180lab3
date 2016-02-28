@@ -176,6 +176,7 @@ module decode (
     assign rt_data = forward_rt_mem ? reg_write_data_mem : (forward_rt_ex ? alu_result_ex : rt_data_in);
 
     wire rs_mem_dependency = &{rs_addr == reg_write_addr_ex, mem_read_ex, rs_addr != `ZERO};
+    wire rt_mem_dependency = &{rt_addr == reg_write_addr_ex, mem_read_ex, rt_addr != `ZERO};
     
     wire forward_rs_ex = &{rs_addr == reg_write_addr_ex, ~mem_read_ex, rs_addr != `ZERO, reg_we_ex};
     wire forward_rt_ex = &{rt_addr == reg_write_addr_ex, ~mem_read_ex, rt_addr != `ZERO, reg_we_ex};
@@ -186,7 +187,7 @@ module decode (
     wire isALUImm = |{op == `ADDI, op == `ADDIU, op == `SLTI, op == `SLTIU, op == `ANDI, op == `ORI, op == `XORI};
     wire read_from_rt = ~|{isLUI, jump_target, isALUImm, mem_read};
 
-    assign stall = rs_mem_dependency & read_from_rs;
+    assign stall = (rs_mem_dependency | rt_mem_dependency) & read_from_rs;
 
     assign jr_pc = rs_data;
     assign mem_write_data = rt_data;
