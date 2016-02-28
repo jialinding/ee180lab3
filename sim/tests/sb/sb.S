@@ -21,26 +21,26 @@ boot:
     ori     $s1, $0, 1          # Prepare the 'done' status
 	lui     $t0, 0              # Load some valid address 0x00003210 to register $t0
     addi    $t1, $0, 0xF01
-    nop
-    nop
-    nop
-    nop
+    #nop
+    #nop
+    #nop
+    #nop
 	ori     $t0, $t0, 0x3210
-	nop
-	nop
-	nop
-	nop
+	#nop
+	#nop
+	#nop
+	#nop
     sb		$t1, 0($t0)
-    nop
-    nop
-    nop
-    nop
-	nop
+    #nop
+    #nop
+    #nop
+    #nop
+	#nop
     lb      $v0, 0($t0)         # 0xffffffde
-    nop
-    nop
-    nop
-    nop
+    #nop
+    #nop
+    #nop
+    #nop
     sw      $v0, 4($s0)         # Set the test result
     sw      $s1, 0($s0)         # Set 'done'
 

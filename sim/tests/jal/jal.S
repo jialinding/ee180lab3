@@ -23,8 +23,8 @@ boot:
     ori     $v0, $0, 0          # The test result starts as a failure
 
 $finish:
-    nop
-    nop
+    #nop
+    #nop
     sw      $v0, 4($s0)
     sw      $s1, 0($s0)
 
@@ -34,11 +34,11 @@ $done:
 
 $target:
     addiu   $t0, $0, $finish       # expected PC+8 in $ra
-    nop
-    nop
+    #nop
+    #nop
     bne     $ra, $t0, $finish
-    nop
-    nop
+    #nop
+    #nop
     j       $finish
     ori     $v0, $0, 1          # Set the result to pass
 
