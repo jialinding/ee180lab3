@@ -187,7 +187,7 @@ module decode (
     wire isALUImm = |{op == `ADDI, op == `ADDIU, op == `SLTI, op == `SLTIU, op == `ANDI, op == `ORI, op == `XORI};
     wire read_from_rt = ~|{isLUI, jump_target, isALUImm, mem_read};
 
-    assign stall = (rs_mem_dependency | rt_mem_dependency) & read_from_rs;
+    assign stall = (rs_mem_dependency & read_from_rs) | (rt_mem_dependency & read_from_rt);
 
     assign jr_pc = rs_data;
     assign mem_write_data = rt_data;
