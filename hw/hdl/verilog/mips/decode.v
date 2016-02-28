@@ -114,6 +114,7 @@ module decode (
             {`SB, `DC6}:        alu_opcode = `ALU_ADD;
             {`BEQ, `DC6}:       alu_opcode = `ALU_SUBU;
             {`BNE, `DC6}:       alu_opcode = `ALU_SUBU;
+						{`XORI, `DC6}:      alu_opcode = `ALU_XOR;
             {`SPECIAL, `ADD}:   alu_opcode = `ALU_ADD;
             {`SPECIAL, `ADDU}:  alu_opcode = `ALU_ADDU;
             {`SPECIAL, `SUB}:   alu_opcode = `ALU_SUB;
@@ -162,7 +163,7 @@ module decode (
     wire [31:0] imm_no_sign_extend = {16'b0, immediate};
     wire [31:0] imm_upper = {immediate, 16'b0};
 
-    wire [31:0] imm = (op == `LUI) ? imm_upper : ((op == `SLTIU | op == `ORI) ? imm_no_sign_extend : imm_sign_extend);
+    wire [31:0] imm = (op == `LUI) ? imm_upper : ((op == `SLTIU | op == `ORI | op == `XORI) ? imm_no_sign_extend : imm_sign_extend);
 
 //******************************************************************************
 // forwarding and stalling logic
@@ -178,7 +179,7 @@ module decode (
     wire isLUI = op == `LUI;
     wire read_from_rs = ~|{isLUI, jump_target, isShiftImm};
 
-    wire isALUImm = |{op == `ADDI, op == `ADDIU, op == `SLTI, op == `SLTIU, op == `ANDI, op == `ORI};
+    wire isALUImm = |{op == `ADDI, op == `ADDIU, op == `SLTI, op == `SLTIU, op == `ANDI, op == `ORI, op == `XORI};
     wire read_from_rt = ~|{isLUI, jump_target, isALUImm, mem_read};
 
     assign stall = rs_mem_dependency & read_from_rs;
