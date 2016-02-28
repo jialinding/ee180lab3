@@ -25,7 +25,7 @@ boot:
     #nop
     #nop
     bne     $t0, $0, $target_ne
-    #nop
+    nop
 
 $finish:
     #nop

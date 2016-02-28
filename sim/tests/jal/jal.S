@@ -37,7 +37,7 @@ $target:
     #nop
     #nop
     bne     $ra, $t0, $finish
-    #nop
+    nop
     #nop
     j       $finish
     ori     $v0, $0, 1          # Set the result to pass

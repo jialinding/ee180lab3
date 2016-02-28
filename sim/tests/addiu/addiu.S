@@ -22,7 +22,7 @@ boot:
     lui     $t0, 0xffff         # A = -1000
     #nop
     ori     $t0, $t0, 0xfc18
-    nop
+    #nop
     addiu   $t1, $t0, 56        # B = A + 56 = -944
     #nop
     addiu   $t2, $t1, 945       # C = B + 945 = 1
