@@ -38,6 +38,7 @@
 `define LBU   6'b100100
 `define SW    6'b101011
 `define SB    6'b101000
+`define MINIU 6'b101001
 
 // FUNCTION CODES (more are above for shifts)
 `define ADD   6'b100000
@@ -96,19 +97,20 @@
 
 // opcodes for the ALU
 
-`define ALU_ADDU 4'd0
-`define ALU_AND 4'd1
-`define ALU_XOR 4'd2
-`define ALU_OR 4'd3
-`define ALU_NOR 4'd4
-`define ALU_SUBU 4'd5
-`define ALU_SLTU 4'd6
-`define ALU_SLT 4'd7
-`define ALU_SRL 4'd8
-`define ALU_SRA 4'd9
-`define ALU_SLL 4'd10
-`define ALU_PASSX 4'd11
-`define ALU_PASSY 4'd12
-`define ALU_ADD 4'd13
-`define ALU_SUB 4'd14
-`define ALU_MUL 4'd15
+`define ALU_ADDU 5'd0
+`define ALU_AND 5'd1
+`define ALU_XOR 5'd2
+`define ALU_OR 5'd3
+`define ALU_NOR 5'd4
+`define ALU_SUBU 5'd5
+`define ALU_SLTU 5'd6
+`define ALU_SLT 5'd7
+`define ALU_SRL 5'd8
+`define ALU_SRA 5'd9
+`define ALU_SLL 5'd10
+`define ALU_PASSX 5'd11
+`define ALU_PASSY 5'd12
+`define ALU_ADD 5'd13
+`define ALU_SUB 5'd14
+`define ALU_MUL 5'd15
+`define ALU_MINU 5'd16
