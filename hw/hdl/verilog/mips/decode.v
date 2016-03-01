@@ -110,7 +110,7 @@ module decode (
             {`LW, `DC6}:        alu_opcode = `ALU_ADD;
             {`LB, `DC6}:        alu_opcode = `ALU_ADD;
             {`LBU, `DC6}:       alu_opcode = `ALU_ADD;
-						{`MINIU, `DC6}:     alu_opcode = `ALU_MINU;
+						//{`MINIU, `DC6}:     alu_opcode = `ALU_MINU;
             {`SW, `DC6}:        alu_opcode = `ALU_ADD;
             {`SB, `DC6}:        alu_opcode = `ALU_ADD;
             {`BEQ, `DC6}:       alu_opcode = `ALU_SUBU;
@@ -125,6 +125,7 @@ module decode (
             {`SPECIAL, `NOR}:   alu_opcode = `ALU_NOR;
             {`SPECIAL, `MOVN}:  alu_opcode = `ALU_PASSX;
             {`SPECIAL, `MOVZ}:  alu_opcode = `ALU_PASSX;
+						{`SPECIAL2, `MINIU}:alu_opcode = `ALU_MINU;
             {`SPECIAL2, `MUL}:  alu_opcode = `ALU_MUL;
             {`SPECIAL, `SLT}:   alu_opcode = `ALU_SLT;
             {`SPECIAL, `SLTU}:  alu_opcode = `ALU_SLTU;

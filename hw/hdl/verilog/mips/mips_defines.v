@@ -38,7 +38,6 @@
 `define LBU   6'b100100
 `define SW    6'b101011
 `define SB    6'b101000
-`define MINIU 6'b101001
 
 // FUNCTION CODES (more are above for shifts)
 `define ADD   6'b100000
@@ -47,6 +46,7 @@
 `define SUBU  6'b100011
 `define AND   6'b100100
 `define OR    6'b100101
+`define MINIU 6'b101001
 `define MOVN  6'b001011
 `define MOVZ  6'b001010
 `define MUL   6'b000010
