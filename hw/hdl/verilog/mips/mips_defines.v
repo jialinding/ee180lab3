@@ -38,6 +38,7 @@
 `define LBU   6'b100100
 `define SW    6'b101011
 `define SB    6'b101000
+`define ADD_FMT 6'b010001
 
 // FUNCTION CODES (more are above for shifts)
 `define ADD   6'b100000
@@ -113,4 +114,3 @@
 `define ALU_ADD 5'd13
 `define ALU_SUB 5'd14
 `define ALU_MUL 5'd15
-`define ALU_DIVU 5'd16
