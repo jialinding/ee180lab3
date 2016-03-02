@@ -17,7 +17,7 @@ module decode (
     output wire jump_target,
     output wire jump_reg,
     output wire [31:0] jr_pc,
-    output reg [3:0] alu_opcode,
+    output reg [4:0] alu_opcode,
     output wire [31:0] alu_op_x,
     output wire [31:0] alu_op_y,
     output wire mem_we,
@@ -110,18 +110,12 @@ module decode (
             {`LW, `DC6}:        alu_opcode = `ALU_ADD;
             {`LB, `DC6}:        alu_opcode = `ALU_ADD;
             {`LBU, `DC6}:       alu_opcode = `ALU_ADD;
-<<<<<<< HEAD
-<<<<<<< HEAD
-						//{`MINIU, `DC6}:     alu_opcode = `ALU_MINU;
-=======
->>>>>>> parent of 75b03f6... added miniu and test
-=======
->>>>>>> parent of 75b03f6... added miniu and test
+						{`MINIU, `DC6}:     alu_opcode = `ALU_MINU;
             {`SW, `DC6}:        alu_opcode = `ALU_ADD;
             {`SB, `DC6}:        alu_opcode = `ALU_ADD;
             {`BEQ, `DC6}:       alu_opcode = `ALU_SUBU;
             {`BNE, `DC6}:       alu_opcode = `ALU_SUBU;
-			{`XORI, `DC6}:      alu_opcode = `ALU_XOR;
+						{`XORI, `DC6}:      alu_opcode = `ALU_XOR;
             {`SPECIAL, `ADD}:   alu_opcode = `ALU_ADD;
             {`SPECIAL, `ADDU}:  alu_opcode = `ALU_ADDU;
             {`SPECIAL, `SUB}:   alu_opcode = `ALU_SUB;
@@ -131,7 +125,6 @@ module decode (
             {`SPECIAL, `NOR}:   alu_opcode = `ALU_NOR;
             {`SPECIAL, `MOVN}:  alu_opcode = `ALU_PASSX;
             {`SPECIAL, `MOVZ}:  alu_opcode = `ALU_PASSX;
-						{`SPECIAL2, `MINIU}:alu_opcode = `ALU_MINU;
             {`SPECIAL2, `MUL}:  alu_opcode = `ALU_MUL;
             {`SPECIAL, `SLT}:   alu_opcode = `ALU_SLT;
             {`SPECIAL, `SLTU}:  alu_opcode = `ALU_SLTU;
@@ -192,7 +185,7 @@ module decode (
     wire isLUI = op == `LUI;
     wire read_from_rs = ~|{isLUI, jump_target, isShiftImm};
 
-    wire isALUImm = |{op == `ADDI, op == `ADDIU, op == `SLTI, op == `SLTIU, op == `ANDI, op == `ORI, op == `XORI};
+    wire isALUImm = |{op == `ADDI, op == `ADDIU, op == `SLTI, op == `SLTIU, op == `ANDI, op == `ORI, op == `XORI, op == `MINIU};
     wire read_from_rt = ~|{isLUI, jump_target, isALUImm, mem_read};
 
     assign stall = (rs_mem_dependency & read_from_rs) | (rt_mem_dependency & read_from_rt);
