@@ -26,7 +26,7 @@ boot:
     #addiu   $t1, $t0, 56        # B = A + 56 = -944
     #nop
 	addiu   $t0, $0, 1000
-    divu    $t2, $t0, $s1       # should ignore $t0, and output 1 since 1 < 255
+    divu    $t2, $s1, $s1       # should ignore $t0, and output 1 since 1 < 255
     #nop
     #nop
     sw      $t2, 4($s0)         # Set the test result
