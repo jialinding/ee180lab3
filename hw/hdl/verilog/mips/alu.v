@@ -25,7 +25,9 @@ module alu (
 //******************************************************************************
 // ALU datapath
 //******************************************************************************
-
+		
+		wire [31:0] alu_abs_temp = ((alu_op_x_signed < 0) ? -alu_op_x_signed : alu_op_x) & 16'hFFFF;
+		
     always @* begin
         case (alu_opcode)
             // PERFORM ALU OPERATIONS DEFINED ABOVE
@@ -46,7 +48,7 @@ module alu (
             `ALU_PASSX: alu_result = alu_op_x;
             `ALU_PASSY: alu_result = alu_op_y;
 						`ALU_DIVU:	alu_result = (alu_op_x > 255) ? 255 : alu_op_x;
-						`ALU_ABS:	  alu_result = ((alu_op_x_signed < 0) ? -alu_op_x_signed : alu_op_x) & 16'hFFFF;
+						`ALU_ABS:	  alu_result = (alu_abs_temp > 255) ? 255 : alu_abs_temp;
             default:    alu_result = 32'hxxxxxxxx;   // undefined
         endcase
     end
