@@ -25,7 +25,8 @@ boot:
     #nop
     #addiu   $t1, $t0, 56        # B = A + 56 = -944
     #nop
-    miniu   $t2, $s1, 255       # C = B + 945 = 1
+	addiu   $t0, $0, 1000
+    divu    $t2, $s1, $t0       # should ignore $t0, and output 1 since 1 < 255
     #nop
     #nop
     sw      $t2, 4($s0)         # Set the test result

@@ -38,7 +38,6 @@
 `define LBU   6'b100100
 `define SW    6'b101011
 `define SB    6'b101000
-`define MINIU 6'b101001
 
 // FUNCTION CODES (more are above for shifts)
 `define ADD   6'b100000
@@ -55,6 +54,7 @@
 `define SLT   6'b101010
 `define SLTU  6'b101011
 `define DC6   6'bxxxxxx
+`define MINU  6'b011011 // DIVU function code
 
 // Register names
 `define ZERO  5'd0

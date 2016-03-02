@@ -110,12 +110,12 @@ module decode (
             {`LW, `DC6}:        alu_opcode = `ALU_ADD;
             {`LB, `DC6}:        alu_opcode = `ALU_ADD;
             {`LBU, `DC6}:       alu_opcode = `ALU_ADD;
-						{`MINIU, `DC6}:     alu_opcode = `ALU_MINU;
             {`SW, `DC6}:        alu_opcode = `ALU_ADD;
             {`SB, `DC6}:        alu_opcode = `ALU_ADD;
             {`BEQ, `DC6}:       alu_opcode = `ALU_SUBU;
             {`BNE, `DC6}:       alu_opcode = `ALU_SUBU;
 						{`XORI, `DC6}:      alu_opcode = `ALU_XOR;
+						{`SPECIAL, `MINU}:  alu_opcode = `ALU_MINU;
             {`SPECIAL, `ADD}:   alu_opcode = `ALU_ADD;
             {`SPECIAL, `ADDU}:  alu_opcode = `ALU_ADDU;
             {`SPECIAL, `SUB}:   alu_opcode = `ALU_SUB;
@@ -185,7 +185,7 @@ module decode (
     wire isLUI = op == `LUI;
     wire read_from_rs = ~|{isLUI, jump_target, isShiftImm};
 
-    wire isALUImm = |{op == `ADDI, op == `ADDIU, op == `SLTI, op == `SLTIU, op == `ANDI, op == `ORI, op == `XORI, op == `MINIU};
+    wire isALUImm = |{op == `ADDI, op == `ADDIU, op == `SLTI, op == `SLTIU, op == `ANDI, op == `ORI, op == `XORI};
     wire read_from_rt = ~|{isLUI, jump_target, isALUImm, mem_read};
 
     assign stall = (rs_mem_dependency & read_from_rs) | (rt_mem_dependency & read_from_rt);
