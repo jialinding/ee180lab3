@@ -1,1 +1,57 @@
-TODO: Write your lab report here. See the handout for more information.
+README
+
+Group 18: Jialin Ding, David Pan
+
+We implemented all the required instructions: add,addi,addiu,addu,and,andi,beq,bgez, bgtz, blez, bltz, bne, j, jal, jalr, jr, lb, lbu, lui, lw, movn, movz, mul, nor, or, ori, sb, sll, sllv, slt, slti, sltiu, sltu, sra, srav, srl, srlv, sub, subu, sw, xor, xori.
+
+In addition, we implemented two custom instructions for the extra credit under the names clo and clz. 
+
+Hazards and Forwarding:
+- Forwarding from ex to id: added boolean signal wire ‘foward_rs_ex’ in decode and added to ternary statement for ‘rs_data’. Only forward if not reading from memory, write enable is high, and rs_addr is equal to reg_write_addr_ex.
+- Forwarding from ex/mem to id (for rt): basically copied the logic for rs to rt.
+- Stalling: stall if there is a memory dependency on rs and the current instruction reads from rs, or if there is a memory dependency on rt and the current instruction reads from rt. (Basically stalling for lw.)
+- Ternary statements for rs_data and rt_data needed to be in particular order: check for forward from ex stage must come before check for forward from mem stage, because if both stages match, we take the data from the ex stage, since it’s more recent.
+
+Extra Credit:
+
+We implemented two custom MIPS instructions under the names clo and clz which allowed us to simply parts of the MIPS code. Using the ALU, the clo instruction computes (alu_op_x > 255) ? 255 : alu_op_x, while the clz instruction computes (alu_abs_temp > 255) ? 255 : alu_abs_temp where alu_abs_temp = ((alu_op_x_signed < 0) ? -alu_op_x_signed : alu_op_x) & 16'hFFFF. We made two new ALU opcodes for these instructions, so we had to increse the ALU opcode length from 4 to 5. The clo instruction represents the C code “sobel_xy = (sobel_xy > 255) ? 255 : sobel_xy;”, and the clz instruction represents the C code “sobel_x = abs(...); sobel_x = (sobel_x > 255) ? 255 : sobel_x;” and “sobel_y = abs(...); sobel_y = (sobel_y > 255) ? 255 : sobel_y;”. We replaced the MIPS code corresponding to this C code with clo and clz.
+
+After these optimizations, the number of cycles for the sobel_asm test decreased from 4775649 to 3526631, and the frames per second for the Sobel demo increased from 3.533334 to 4.784649. Below are the full results:
+
+Original sobel_asm:
+
+Image rows:  162
+Image columns:  640
+Instruction Memory: tests/sobel_asm/build/app.hex
+Input Data Buffer: tests/sobel_asm/ibuf.hex
+Output buffer: tests/sobel_asm/obuf_test.hex
+  Dumping range: 0x000000000 - 0x000019500
+Running userlogic for maximum of 10000000 cycles
+Userlogic ran for 4775649 cycles
+status register = 1
+test register = 0
+
+New sobel_asm:
+
+Image rows:  162
+Image columns:  640
+Instruction Memory: tests/sobel_asm/build/app.hex
+Input Data Buffer: tests/sobel_asm/ibuf.hex
+Output buffer: tests/sobel_asm/obuf_test.hex
+  Dumping range: 0x000000000 - 0x000019500
+Running userlogic for maximum of 10000000 cycles
+Userlogic ran for 3526631 cycles
+status register = 1
+test register = 0
+
+Original Sobel demo:
+
+Framecount              : 300
+Total MIPS time elapsed : 84.905648 s
+Frames per second       : 3.533334
+
+New Sobel demo:
+
+Framecount              : 300
+Total MIPS time elapsed : 62.700528 s
+Frames per second       : 4.784649
