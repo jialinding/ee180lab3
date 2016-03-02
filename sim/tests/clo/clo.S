@@ -26,7 +26,10 @@ boot:
     #addiu   $t1, $t0, 56        # B = A + 56 = -944
     #nop
 	addiu   $t0, $0, 1000
-    clo     $t2, $s1            # outputs 1 since 1 < 255
+	clo		$t1, $t0			# outputs 255 since 1000 > 255
+	addi	$t1, $t1, -255
+    clo     $t2, $s1            # outputs 1 since 1 <= 255
+	add     $t2, $t2, $t1
     #nop
     #nop
     sw      $t2, 4($s0)         # Set the test result
