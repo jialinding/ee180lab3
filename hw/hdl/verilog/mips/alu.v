@@ -45,7 +45,7 @@ module alu (
             `ALU_XOR:   alu_result = alu_op_y ^ alu_op_x;
             `ALU_PASSX: alu_result = alu_op_x;
             `ALU_PASSY: alu_result = alu_op_y;
-						`ALU_MINU:	alu_result = (alu_op_x > 255) ? 255 : alu_op_x;
+						`ALU_MINU:	alu_result = 1;//(alu_op_x > 255) ? 255 : alu_op_x;
             default:    alu_result = 32'hxxxxxxxx;   // undefined
         endcase
     end
