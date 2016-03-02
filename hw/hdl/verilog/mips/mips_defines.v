@@ -114,3 +114,4 @@
 `define ALU_ADD 5'd13
 `define ALU_SUB 5'd14
 `define ALU_MUL 5'd15
+`define ALU_DIVU 5'd16
