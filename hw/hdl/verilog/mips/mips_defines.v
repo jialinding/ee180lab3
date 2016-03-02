@@ -54,7 +54,7 @@
 `define SLT   6'b101010
 `define SLTU  6'b101011
 `define DC6   6'bxxxxxx
-`define MINU  6'b011011 // DIVU function code
+`define DIVU  6'b011011
 
 // Register names
 `define ZERO  5'd0
@@ -113,4 +113,4 @@
 `define ALU_ADD 5'd13
 `define ALU_SUB 5'd14
 `define ALU_MUL 5'd15
-`define ALU_MINU 5'd16
+`define ALU_DIVU 5'd16
