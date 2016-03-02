@@ -116,6 +116,7 @@ module decode (
             {`BNE, `DC6}:       alu_opcode = `ALU_SUBU;
 						{`XORI, `DC6}:      alu_opcode = `ALU_XOR;
 						{`SPECIAL2, `CLO}:  alu_opcode = `ALU_DIVU;
+						{`SPECIAL2, `CLZ}:  alu_opcode = `ALU_ABS;
             {`SPECIAL, `ADD}:   alu_opcode = `ALU_ADD;
             {`SPECIAL, `ADDU}:  alu_opcode = `ALU_ADDU;
             {`SPECIAL, `SUB}:   alu_opcode = `ALU_SUB;

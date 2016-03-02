@@ -46,6 +46,7 @@ module alu (
             `ALU_PASSX: alu_result = alu_op_x;
             `ALU_PASSY: alu_result = alu_op_y;
 						`ALU_DIVU:	alu_result = (alu_op_x > 255) ? 255 : alu_op_x;
+						`ALU_ABS:	  alu_result = ((alu_op_x_signed < 0) ? -alu_op_x_signed : alu_op_x) & 16'hFFFF;
             default:    alu_result = 32'hxxxxxxxx;   // undefined
         endcase
     end

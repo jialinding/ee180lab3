@@ -55,6 +55,7 @@
 `define SLTU  6'b101011
 `define DC6   6'bxxxxxx
 `define CLO   6'b100001
+`define CLZ   6'b100000
 
 // Register names
 `define ZERO  5'd0
@@ -114,3 +115,4 @@
 `define ALU_SUB 5'd14
 `define ALU_MUL 5'd15
 `define ALU_DIVU 5'd16
+`define ALU_ABS 5'd17
