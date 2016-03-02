@@ -44,32 +44,25 @@ $L4:
 
 $L5:
         andi    $2,$2,0xffff
-#        sltu    $3,$2,256
-#        bne     $3,$0,$L20
-#        sltu    $3,$4,256
+        sltu    $3,$2,256
+        bne     $3,$0,$L20
+        sltu    $3,$4,256
 
-#        li      $2,255                  # 0xff
-#$L20:
-#        bne     $3,$0,$L7
-#        nop
+        li      $2,255                  # 0xff
+$L20:
+        bne     $3,$0,$L7
+        nop
 
-#        li      $4,255                  # 0xff
-#$L7:
-
-		clo $2, $2
-		clo $4, $4
-
+        li      $4,255                  # 0xff
+$L7:
         addu    $2,$2,$4
         andi    $2,$2,0xffff
-#        sltu    $3,$2,256
-#        bne     $3,$0,$L8
+        sltu    $3,$2,256
+        bne     $3,$0,$L8
         addu    $4,$12,$11
 
-#        li      $2,255                  # 0xff
-#$L8:
-
-		clo $2, $2
-
+        li      $2,255                  # 0xff
+$L8:
         addiu   $11,$11,1
         sltu    $3,$7,$11
         sb      $2,-641($4)
