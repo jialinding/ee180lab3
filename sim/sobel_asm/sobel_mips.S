@@ -61,27 +61,34 @@ $L9:
 	movn	$3,$4,$5
 	andi	$2,$2,0xffff
 	andi	$3,$3,0xffff
-	sltu	$5,$2,256
-	bne	$5,$0,$L6
-	sltu	$4,$3,256
+#	sltu	$5,$2,256
+#	bne	$5,$0,$L6
+#	sltu	$4,$3,256
 
-	li	$2,255			# 0xff
-$L6:
-	bne	$4,$0,$L7
-	nop
+#	li	$2,255			# 0xff
+#$L6:
+#	bne	$4,$0,$L7
+#	nop
 
-	li	$3,255			# 0xff
-$L7:
+#	li	$3,255			# 0xff
+#$L7:
+
+	clo	$2, $2
+	clo $3, $3
+
 	addu	$2,$2,$3
 	andi	$2,$2,0xffff
 	addu	$4,$11,$14
-	sltu	$5,$2,256
+	#sltu	$5,$2,256
 	addiu	$14,$14,1
-	bne	$5,$0,$L8
+	#bne	$5,$0,$L8
 	sltu	$3,$7,$14
 
-	li	$2,255			# 0xff
-$L8:
+	#li	$2,255			# 0xff
+#$L8:
+
+	clo $2, $2
+
 	sb	$2,-641($4)
 	addiu	$9,$9,1
 	beq	$3,$0,$L9
