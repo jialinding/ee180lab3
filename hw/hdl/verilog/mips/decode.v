@@ -111,7 +111,10 @@ module decode (
             {`LB, `DC6}:        alu_opcode = `ALU_ADD;
             {`LBU, `DC6}:       alu_opcode = `ALU_ADD;
 <<<<<<< HEAD
+<<<<<<< HEAD
 						//{`MINIU, `DC6}:     alu_opcode = `ALU_MINU;
+=======
+>>>>>>> parent of 75b03f6... added miniu and test
 =======
 >>>>>>> parent of 75b03f6... added miniu and test
             {`SW, `DC6}:        alu_opcode = `ALU_ADD;

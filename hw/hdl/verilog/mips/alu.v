@@ -7,7 +7,7 @@
 `include "mips_defines.v"
 
 module alu (
-    input [4:0] alu_opcode,
+    input [3:0] alu_opcode,
     input [31:0] alu_op_x,
     input [31:0] alu_op_y,
     output reg [31:0] alu_result,
@@ -45,7 +45,6 @@ module alu (
             `ALU_XOR:   alu_result = alu_op_y ^ alu_op_x;
             `ALU_PASSX: alu_result = alu_op_x;
             `ALU_PASSY: alu_result = alu_op_y;
-						`ALU_MINU:	alu_result = (alu_op_x > alu_op_y) ? alu_op_y : alu_op_x;
             default:    alu_result = 32'hxxxxxxxx;   // undefined
         endcase
     end
